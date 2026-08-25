@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spatzschatz</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Passwortabfrage -->
+<div id="lock-screen">
+  <form id="lock-form">
+    <h1>Alles Gute zum Geburtstag mein Engel <3</h1>
+    <p>Bitte Passwort eingeben. (ich muss sicher sein, dass du es bist...)</p>
+    <input type="password" id="password-input" autocomplete="current-password" required>
+    <button type="submit">Öffnen</button>
+    <p id="lock-error">Heee! Das war falsch!</p>
+  </form>
+</div>
+
+<!-- Board -->
+<div id="content" hidden>
+  <header id="board-header">
+    <span class="brand">Spatzschatz</span>
+  </header>
+
+  <div id="board-canvas"></div>
+</div>
+
+<!-- Postkarten-Modal -->
+<div id="postcard-overlay" class="overlay" hidden>
+  <button class="overlay-close" data-close>&times;</button>
+  <div id="postcard-scene">
+    <div id="postcard-flip">
+      <img id="postcard-front" class="postcard-face" src="" alt="Vorderseite">
+      <img id="postcard-back" class="postcard-face postcard-face-back" src="" alt="Rückseite">
+    </div>
+  </div>
+  <div class="overlay-meta">
+    <p id="postcard-info"></p>
+    <button id="postcard-flip-btn">umdrehen</button>
+  </div>
+</div>
+
+<!-- Tagebuch-Modal -->
+<div id="diary-overlay" class="overlay" hidden>
+  <button class="overlay-close" data-close>&times;</button>
+  <div id="diary-scene">
+    <button id="diary-prev" class="diary-nav" aria-label="Vorherige Seite">&#8249;</button>
+    <img id="diary-page" src="" alt="Tagebuchseite">
+    <button id="diary-next" class="diary-nav" aria-label="Nächste Seite">&#8250;</button>
+  </div>
+  <div class="overlay-meta">
+    <p id="diary-info"></p>
+    <p id="diary-pagecount"></p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

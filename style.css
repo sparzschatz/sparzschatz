@@ -1,0 +1,300 @@
+:root {
+  --bg: #0a0a0a;
+  --bg-dot: #1e1e1e;
+  --white: #ffffff;
+  --ink: #16150f;
+  --text-light: #e8e6e0;
+  --grey: #9c9a92;
+  --grey-line: #d8d6cf;
+  --forest: #24402e;
+  --turquoise: #1b9c93;
+
+  --font-ui: Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+/* hidden gewinnt immer, auch gegen ID-Regeln mit eigenem display */
+[hidden] { display: none !important; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  background-image: radial-gradient(circle, var(--bg-dot) 1.3px, transparent 1.3px);
+  background-size: 34px 34px;
+  color: var(--text-light);
+  font-family: var(--font-ui);
+}
+
+/* ---------- Lock screen ---------- */
+#lock-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+#lock-form {
+  text-align: center;
+  max-width: 320px;
+  width: 100%;
+}
+
+#lock-form h1 {
+  font-size: 1.7rem;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+  color: var(--text-light);
+}
+
+#lock-form p {
+  color: var(--grey);
+  margin-top: 0;
+  font-size: 0.9rem;
+}
+
+#password-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1.5px solid var(--ink);
+  background: var(--white);
+  margin-bottom: 12px;
+  font-family: var(--font-ui);
+}
+
+#lock-form button {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  background: var(--forest);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+}
+
+#lock-form button:hover { background: #1a3123; }
+
+#lock-error {
+  display: none;
+  color: #a3372f;
+  font-size: 0.85rem;
+}
+
+#lock-error.visible { display: block; }
+
+/* ---------- Header ---------- */
+#board-header {
+  position: sticky;
+  top: 0;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 5;
+}
+
+#board-header .brand {
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+  color: var(--text-light);
+}
+
+/* ---------- Board: feststehende Fläche, geht nahtlos in den Seitenhintergrund über ---------- */
+#board-canvas {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 56px);
+}
+
+/* ---------- Items on the board ---------- */
+.item {
+  position: absolute;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.item:hover { transform: scale(1.05) rotate(0deg) !important; }
+
+.item-label {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  text-align: center;
+  margin-top: 8px;
+  color: #e8e6e0;
+}
+
+.item-tag {
+  display: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.tag-postkarte { background: var(--turquoise); }
+.tag-tagebuch { background: var(--forest); }
+
+/* Postkarte auf dem Board */
+.item-postkarte .item-face {
+  width: 276px;
+  height: 179px;
+  object-fit: contain;
+  background: var(--black);
+  border: 0px solid var(--ink);
+}
+
+/* Fotostreifen auf dem Board */
+.item-fotostreifen img,
+.strip-img {
+  display: block;
+  object-fit: contain;
+  border: 0px solid var(--ink);
+}
+
+.quer .strip-img { width: 450px; height: 285px; }
+.hoch .strip-img { width: 285px; height: 450px; }
+
+/* Tagebuch auf dem Board: gestapelter Look */
+.item-tagebuch .stack {
+  position: relative;
+  width: 270px;
+  height: 321px;
+}
+
+
+.item-tagebuch .stack img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border: 0px solid var(--ink);
+}
+
+/* ---------- Overlays (gemeinsam) ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(22, 21, 15, 0.82);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  padding: 24px;
+}
+
+.overlay-close {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.overlay-meta {
+  margin-top: 22px;
+  text-align: center;
+  color: var(--white);
+}
+
+.overlay-meta p {
+  margin: 0 0 10px;
+  font-size: 0.85rem;
+  color: #cfcdc4;
+}
+
+.overlay-meta button {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  background: var(--turquoise);
+  color: var(--ink);
+  border: none;
+  padding: 9px 16px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.overlay-meta button:hover { background: #17847c; }
+
+/* ---------- Postkarten-Modal (3D-Flip) ---------- */
+#postcard-scene {
+  perspective: 1600px;
+  width: min(90vw, 640px);
+  aspect-ratio: 3 / 2;
+}
+
+#postcard-flip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0.1, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+#postcard-flip.flipped { transform: rotateY(180deg); }
+
+.postcard-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  backface-visibility: hidden;
+  border: 0px solid var(--white);
+}
+
+.postcard-face-back { transform: rotateY(180deg); }
+
+/* ---------- Tagebuch-Modal (Reader) ---------- */
+#diary-scene {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+#diary-page {
+  max-width: min(92vw, 900px);
+  max-height: 78vh;
+  object-fit: contain;
+  border: 0px solid var(--white);
+  background: var(--white);
+}
+
+.diary-nav {
+  background: none;
+  border: 1.5px solid var(--white);
+  color: var(--white);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.diary-nav:hover { background: var(--white); color: var(--ink); }
+
+.diary-nav:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.diary-nav:disabled:hover { background: none; color: var(--white); }
+
+@media (max-width: 640px) {
+  #diary-scene { gap: 10px; }
+  .diary-nav { width: 34px; height: 34px; font-size: 1.1rem; }
+}
