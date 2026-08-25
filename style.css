@@ -99,6 +99,8 @@ html, body {
   z-index: 5;
 }
 
+#spotify-embed { position: fixed; top: 70px; left: 20px; z-index: 5; width: 300px; } 
+
 #board-header .brand {
   font-weight: 700;
   font-size: 1.05rem;
