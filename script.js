@@ -57,27 +57,40 @@ function renderItems() {
     const tagClass = item.typ === "postkarte" ? "tag-postkarte" : "tag-tagebuch";
     const tagLabel = item.typ === "postkarte" ? "Postkarte" : "Reisetagebuch";
 
-if (item.typ === "postkarte") {
-  el.innerHTML = `
-    <img class="item-face" src="${item.vorderseite}" alt="${item.titel}">
-    <div class="item-label"><span class="item-tag ${tagClass}"></span>${item.titel}</div>
-  `;
-  el.addEventListener("click", () => openPostcard(item));
-} else if (item.typ === "fotostreifen") {
-  const richtung = item.ausrichtung === "hoch" ? "hoch" : "quer";
-  el.classList.add(richtung);
-  el.innerHTML = `
-    <img class="strip-img" src="${item.bild}" alt="${item.titel}">
-    <div class="item-label"><span class="item-tag tag-postkarte"></span>${item.titel}</div>
-  `;
-  el.addEventListener("click", () => openDiary({ ...item, seiten: [item.bild] }));
-} else {
-  el.innerHTML = `
-    <div class="stack"><img src="${item.seiten[0]}" alt="${item.titel}"></div>
-    <div class="item-label"><span class="item-tag ${tagClass}"></span>${item.titel}</div>
-  `;
-  el.addEventListener("click", () => openDiary(item));
-}
+    if (item.typ === "postkarte") {
+      el.innerHTML = `
+        <img class="item-face" src="${item.vorderseite}" alt="${item.titel}">
+        <div class="item-label"><span class="item-tag ${tagClass}"></span>${item.titel}</div>
+      `;
+      el.addEventListener("click", () => openPostcard(item));
+
+    } else if (item.typ === "fotostreifen") {
+      const richtung = item.ausrichtung === "hoch" ? "hoch" : "quer";
+      el.classList.add(richtung);
+      el.innerHTML = `
+        <img class="strip-img" src="${item.bild}" alt="${item.titel}">
+        <div class="item-label"><span class="item-tag tag-postkarte"></span>${item.titel}</div>
+      `;
+      el.addEventListener("click", () => openDiary({ ...item, seiten: [item.bild] }));
+
+    } else if (item.typ === "video") {
+      el.innerHTML = `
+        <video
+          class="board-video"
+          src="${item.video}"
+          controls
+          preload="metadata"
+          playsinline>
+        </video>
+      `;
+
+    } else {
+      el.innerHTML = `
+        <div class="stack"><img src="${item.seiten[0]}" alt="${item.titel}"></div>
+        <div class="item-label"><span class="item-tag ${tagClass}"></span>${item.titel}</div>
+      `;
+      el.addEventListener("click", () => openDiary(item));
+    }
 
     canvas.appendChild(el);
   });
@@ -129,11 +142,17 @@ function renderDiaryPage() {
 }
 
 diaryPrevBtn.addEventListener("click", () => {
-  if (currentPage > 0) { currentPage--; renderDiaryPage(); }
+  if (currentPage > 0) {
+    currentPage--;
+    renderDiaryPage();
+  }
 });
 
 diaryNextBtn.addEventListener("click", () => {
-  if (currentPage < currentDiary.seiten.length - 1) { currentPage++; renderDiaryPage(); }
+  if (currentPage < currentDiary.seiten.length - 1) {
+    currentPage++;
+    renderDiaryPage();
+  }
 });
 
 /* ---------- Overlays schließen ---------- */
@@ -149,6 +168,7 @@ document.querySelectorAll(".overlay").forEach(ov => {
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeOverlays();
+
   if (!diaryOverlay.hidden) {
     if (e.key === "ArrowLeft") diaryPrevBtn.click();
     if (e.key === "ArrowRight") diaryNextBtn.click();
@@ -166,19 +186,4 @@ function formatDate(iso) {
   if (parts.length === 3) return `${parts[2]}.${parts[1]}.${parts[0]}`;
   if (parts.length === 2) return `${parts[1]}/${parts[0]}`;
   return iso;
-}
-
-if (item.typ === "video") {
-  const video = document.createElement("video");
-
-  video.src = item.video;
-  video.controls = true;
-  video.preload = "metadata";
-  video.playsInline = true;
-
-  video.style.width = "320px";
-  video.style.height = "auto";
-  video.style.display = "block";
-
-  element.appendChild(video);
 }
