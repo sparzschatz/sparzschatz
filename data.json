@@ -120,6 +120,7 @@
   "rotation": -3,
   "ausrichtung": "quer",
   "bild": "images/fotostreifen-italien-2.jpg"
+      
 },
     {
   "id": "fotostreifen-2",
@@ -144,6 +145,18 @@
   "rotation": -3,
   "ausrichtung": "hoch",
   "bild": "images/fotostreifen-sephora.jpg"
+},
+      {
+  "id": "fotostreifen-4",
+  "typ": "fotostreifen",
+  "titel": "",
+  "datum": "13.09.2026",
+  "ort": "Hamburg, Göteborg",
+  "x": 400,
+  "y": 318,
+  "rotation": -3,
+  "ausrichtung": "hoch",
+  "bild": "images/fotostreifen-spatz-online.png"
 },
   {
     "id": "briefe-slowakei",
