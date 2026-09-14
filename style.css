@@ -309,8 +309,7 @@ html, body {
 
 .item-video .board-video {
   display: block;
-  width: 320px;
-  height: auto;
+
   max-height: 420px;
   object-fit: contain;
   background: #000;
