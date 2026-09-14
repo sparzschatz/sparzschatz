@@ -152,7 +152,7 @@
   "titel": "",
   "datum": "13.09.2026",
   "ort": "Hamburg, Göteborg",
-  "x": 400,
+  "x": 200,
   "y": 318,
   "rotation": -3,
   "ausrichtung": "hoch",
@@ -192,4 +192,16 @@
       "images/slowakei/slowakei-21.jpg"
     ]
   }
+  {
+  "id": "video-spatz",
+  "typ": "video",
+  "titel": "",
+  "datum": "13.09.2026",
+  "ort": "Hamburg, Göteborg",
+  "x": 1360,
+  "y": 760,
+  "rotation": 4,
+  "video": "images/vlog-spatz_klein.mp4",
+  "controls": true
+}
 ]
