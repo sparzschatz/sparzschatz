@@ -198,9 +198,9 @@
   "typ": "video",
   "titel": "",
   "datum": "13.09.2026",
-  "ort": "Hamburg, Göteborg",
-  "x": 1360,
-  "y": 760,
+  "ort": "Göteborg",
+  "x": 400,
+  "y": 220,
   "rotation": 4,
   "video": "images/vlog-spatz_klein.mp4",
   "controls": true
