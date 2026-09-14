@@ -300,3 +300,22 @@ html, body {
   #diary-scene { gap: 10px; }
   .diary-nav { width: 34px; height: 34px; font-size: 1.1rem; }
 }
+
+/* ---------- Video auf dem Board ---------- */
+
+.item-video {
+  cursor: default;
+}
+
+.item-video .board-video {
+  display: block;
+  width: 320px;
+  height: auto;
+  max-height: 420px;
+  object-fit: contain;
+  background: #000;
+}
+
+.item-video:hover {
+  transform: scale(1.02) rotate(0deg) !important;
+}
