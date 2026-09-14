@@ -167,3 +167,18 @@ function formatDate(iso) {
   if (parts.length === 2) return `${parts[1]}/${parts[0]}`;
   return iso;
 }
+
+if (item.typ === "video") {
+  const video = document.createElement("video");
+
+  video.src = item.video;
+  video.controls = true;
+  video.preload = "metadata";
+  video.playsInline = true;
+
+  video.style.width = "320px";
+  video.style.height = "auto";
+  video.style.display = "block";
+
+  element.appendChild(video);
+}
